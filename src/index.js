@@ -93,7 +93,7 @@ class Game extends React.Component {
 
     const moves = history.map((step, move) => {
       const desc = move ?
-      'Go to move #' + move + this.state.location:
+      'Go to move #' + move :
       'Go to game start';
       return(
         <li key={move}>
@@ -116,7 +116,7 @@ class Game extends React.Component {
             onClick={(i)=> this.handleClick(i)}/>
         </div>
         <div className="game-info">
-          <div>{status}</div>
+    <div>{status}{this.state.location}</div>
           <ol>{moves}</ol>
         </div>
       </div>
@@ -156,7 +156,7 @@ function getLoc(i) {
     [2,1],
     [2,2]
   ];
-  return (" (" + coords[i] +")");
+  return (" (Last Move: " + coords[i] +")");
 }
 
 
