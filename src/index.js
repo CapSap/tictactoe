@@ -57,7 +57,7 @@ class Game extends React.Component {
       }],
       xNext: true,
       stepNumber: 0,
-      lastMoveLocation: []
+      moveLoc: []
 
     }
   }
@@ -65,8 +65,7 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber +1);
     const current = history[this.state.stepNumber];
     const squares = current.squares.slice();
-    const moveLocHistory = this.state.lastMoveLocation.slice(0, this.state.stepNumber);
-    const currentMoveLoc = moveLocHistory[this.state.stepNumber];
+    const moveLocHistory = this.state.moveLoc.slice(0, this.state.stepNumber);
 
       if (calculateWinner(squares) || squares[i]) {
       return;
@@ -79,7 +78,7 @@ class Game extends React.Component {
       }]),
       xNext: !this.state.xNext,
       stepNumber: history.length,
-      lastMoveLocation: moveLocHistory.concat([getLoc(i)])
+      moveLoc: moveLocHistory.concat([getLoc(i)])
     })
   }
 
@@ -94,11 +93,10 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const locForMove = this.state.lastMoveLocation;
 
     const moves = history.map((step, move) => {
       const desc = move ?
-      'Go to move #' + move + ' Move coordinate: ' + this.state.lastMoveLocation[move-1]:
+      'Go to move #' + move + ' Move coordinate: ' + this.state.moveLoc[move-1]:
       'Go to game start';
       return(
         <li key={move}>
