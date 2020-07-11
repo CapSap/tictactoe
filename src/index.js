@@ -20,6 +20,7 @@ class Board extends React.Component {
       <Square
         sqProp={this.props.boardProp[i]}
         onClick={() => {this.props.onClick(i)}}
+        sqLocProp={getLoc(i)}
       />
     );
   }
@@ -52,11 +53,11 @@ class Game extends React.Component {
     super(props)
     this.state ={
       history: [{
-        squares: Array(9).fill(null)
+        squares: Array(9).fill(null),
       }],
       xNext: true,
       stepNumber: 0,
-      location: null
+      lastMoveLocation: []
 
     }
   }
@@ -64,6 +65,9 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber +1);
     const current = history[this.state.stepNumber];
     const squares = current.squares.slice();
+    const moveLocHistory = this.state.lastMoveLocation.slice(0, this.state.stepNumber);
+    const currentMoveLoc = moveLocHistory[this.state.stepNumber];
+
       if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -75,7 +79,7 @@ class Game extends React.Component {
       }]),
       xNext: !this.state.xNext,
       stepNumber: history.length,
-      location: getLoc(i)
+      lastMoveLocation: moveLocHistory.concat([getLoc(i)])
     })
   }
 
@@ -90,10 +94,11 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    const locForMove = this.state.lastMoveLocation;
 
     const moves = history.map((step, move) => {
       const desc = move ?
-      'Go to move #' + move :
+      'Go to move #' + move + ' Move coordinate: ' + this.state.lastMoveLocation[move-1]:
       'Go to game start';
       return(
         <li key={move}>
@@ -116,7 +121,7 @@ class Game extends React.Component {
             onClick={(i)=> this.handleClick(i)}/>
         </div>
         <div className="game-info">
-    <div>{status}{this.state.location}</div>
+    <div>{status}</div>
           <ol>{moves}</ol>
         </div>
       </div>
@@ -156,7 +161,7 @@ function getLoc(i) {
     [2,1],
     [2,2]
   ];
-  return (" (Last Move: " + coords[i] +")");
+  return coords[i];
 }
 
 
