@@ -57,7 +57,8 @@ class Game extends React.Component {
       }],
       xNext: true,
       stepNumber: 0,
-      moveLoc: []
+      moveLoc: [],
+      boldOnClick: ""
 
     }
   }
@@ -85,7 +86,8 @@ class Game extends React.Component {
   jumpTo(step) {
     this.setState({
       stepNumber: step,
-      xNext: (step % 2) === 0
+      xNext: (step % 2) === 0,
+      boldOnClick: "boldOnClick"
     })
   }
 
@@ -94,13 +96,13 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
-      const desc = move ?
-      'Go to move #' + move + ' Coordinate: ' + this.state.moveLoc[move-1]:
+    const moves = history.map((item, index) => {
+      const desc = index ?
+      'Go to move #' + index + ' Coordinate: ' + this.state.moveLoc[index-1]:
       'Go to game start';
       return(
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        <li key={index}>
+          <button className={this.state.boldOnClick} onClick={() => this.jumpTo(index)}>{desc}</button>
         </li>
       )
     })
