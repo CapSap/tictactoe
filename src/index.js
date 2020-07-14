@@ -101,12 +101,11 @@ class Game extends React.Component {
       'Go to move #' + index + ' Coordinate: ' + this.state.moveLoc[index-1]:
       'Go to game start';
       if (this.state.stepNumber === index ) {
-        makeBold = "boldOnClick"       
+        makeBold = "makeBold"
       }
       return(
         <li key={index}>
           <button className={makeBold} onClick={() => this.jumpTo(index)}>{desc}</button>
-          {console.log(history.length)}
         </li>
       )
     })
