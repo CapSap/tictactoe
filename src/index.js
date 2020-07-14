@@ -58,12 +58,11 @@ class Game extends React.Component {
       xNext: true,
       stepNumber: 0,
       moveLoc: [],
-      boldOnClick: ""
 
     }
   }
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber +1);
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[this.state.stepNumber];
     const squares = current.squares.slice();
     const moveLocHistory = this.state.moveLoc.slice(0, this.state.stepNumber);
@@ -87,22 +86,27 @@ class Game extends React.Component {
     this.setState({
       stepNumber: step,
       xNext: (step % 2) === 0,
-      boldOnClick: "boldOnClick"
     })
+
   }
 
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    let makeBold = "";
 
     const moves = history.map((item, index) => {
       const desc = index ?
       'Go to move #' + index + ' Coordinate: ' + this.state.moveLoc[index-1]:
       'Go to game start';
+      if (this.state.stepNumber === index ) {
+        makeBold = "boldOnClick"       
+      }
       return(
         <li key={index}>
-          <button className={this.state.boldOnClick} onClick={() => this.jumpTo(index)}>{desc}</button>
+          <button className={makeBold} onClick={() => this.jumpTo(index)}>{desc}</button>
+          {console.log(history.length)}
         </li>
       )
     })
