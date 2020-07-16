@@ -31,12 +31,12 @@ class Board extends React.Component {
     let sq = [];
     let count = 0;
     for (let i=0;i<3;i++) {
-      sq.push(<div className="board-row"></div>)
 
       for (let k=0;k<3;k++) {
         sq.push(this.renderSquare(count))
         count++;
-      }
+      }       sq.push(<div className="board-row"></div>)
+
     }
     return (
       <div>{sq}{console.log(sq)}</div>
