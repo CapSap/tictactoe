@@ -25,6 +25,8 @@ class Board extends React.Component {
     );
   }
 
+  // Rewrite Board to use two loops to make the squares instead of hardcoding them.
+
   render() {
     let sq = [];
     let count = 0;
@@ -41,7 +43,6 @@ class Board extends React.Component {
 
     )
          
-  
     
     /* return (
       <div>
@@ -117,6 +118,7 @@ class Game extends React.Component {
       const desc = index ?
       'Go to move #' + index + ' Coordinate: ' + this.state.moveLoc[index-1]:
       'Go to game start';
+        //Bold the currently selected item in the move list.
       if (this.state.stepNumber === index ) {
         makeBold = "makeBold"
       }
