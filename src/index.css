@@ -6,7 +6,8 @@ body {
 ol, ul {
   padding-left: 30px;
 }
-
+.board-row {
+}
 .board-row:after {
   clear: both;
   content: "";
@@ -43,10 +44,14 @@ ol, ul {
 .game {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+}
+.game-board {
+  flex: none;
+  padding-right: 20px;
 }
 
 .game-info {
-  margin-left: 20px;
 }
 
 .title {
