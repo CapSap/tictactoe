@@ -45,8 +45,13 @@ ol, ul {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .game-board {
   flex: none;
+  padding-right: 20px;
+}
+
+.game-info {
   padding-right: 20px;
 }
 

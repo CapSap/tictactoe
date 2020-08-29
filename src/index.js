@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from "react-dom";
 import "./index.css";
+import Colour from "./components/colour.js"
 
   function Square(props) {
       return (
@@ -66,7 +67,11 @@ class Board extends React.Component {
   }
 }
 
+
+
+
 class Game extends React.Component {
+  
   constructor(props) {
     super(props)
     this.state ={
@@ -145,6 +150,9 @@ class Game extends React.Component {
         <div className="game-info">
     <div>{status}</div>
           <ol>{moves}</ol>
+        </div>
+        <div className="colour">
+          <Colour />
         </div>
       </div>
     );
