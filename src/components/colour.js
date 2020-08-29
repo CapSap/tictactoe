@@ -17,10 +17,9 @@ class Colour extends React.Component {
     this.setState({
       randomColour: x
       
-    })
+   })
   }
-
-
+  
   getRandomColour(){
     var xhr = new XMLHttpRequest();
     let url = "http://www.colr.org/json/color/random";
