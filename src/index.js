@@ -15,12 +15,13 @@ import Colour from "./components/colour.js"
   }
 
 class Board extends React.Component {
- 
   renderSquare(i) {
     return (
       <Square
         sqProp={this.props.boardProp[i]}
-        onClick={() => {this.props.onClick(i)}}
+        onClick={() => {
+          this.props.onClick(i);
+        }}
         sqLocProp={getLoc(i)}
       />
     );
@@ -31,39 +32,19 @@ class Board extends React.Component {
   render() {
     let sq = [];
     let count = 0;
-    for (let i=0;i<3;i++) {
-
-      for (let k=0;k<3;k++) {
-        sq.push(this.renderSquare(count))
+    for (let i = 0; i < 3; i++) {
+      for (let k = 0; k < 3; k++) {
+        sq.push(this.renderSquare(count));
         count++;
-      }       sq.push(<div className="board-row"></div>)
-
+      }
+      sq.push(<div className="board-row"></div>);
     }
     return (
-      <div>{sq}{console.log(sq)}</div>
-
-    )
-         
-    
-    /* return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {sq}
+        {console.log(sq)}
       </div>
-    ); */
+    );
   }
 }
 
