@@ -4,40 +4,44 @@ import React from 'react';
 
 class Colour extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     
     this.state = {
       randomColour : "",
-      error: null
+      error: null,
+      updatePlease: false
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  //function to setState to random colour
-  randomColourSetState = (x) => {
-    this.setState({
-      randomColour: x
-      
-   })
-  }
-  
-  getRandomColour(){
+  componentDidUpdate() {
+
     var xhr = new XMLHttpRequest();
-    let url = "http://www.colr.org/json/color/random";
+    let url = "http://www.scolr.org/json/color/random";
     xhr.open('GET',url,true);
     xhr.onload = function() {
       if(this.status == 200) {
-        
-      }
+        var data = JSON.parse(xhr.responseText);
+        console.log(data)                      
+      } 
     }
     xhr.send();
-  }
+    }   
+  
+    handleClick() {
+      this.setState ({
+        updatePlease: true
+      })
+      console.log('click')
+    }
 
+   
+    // maybe onClick should set state value update true; then run api stuff in compDidUpdate?
 
   render() {
-    console.log(this.state.randomColour)
     return (
       <div>
-        <button onClick={this.getRandomColour}>Get random colour for X</button>
+        <button onClick={this.handleClick}>{this.state.randomColour}Get random colour for X</button>
         <h3>{this.state.randomColour}</h3>
         {/* render error */}
         {this.state.error &&  <h3>{this.state.error}</h3>}
