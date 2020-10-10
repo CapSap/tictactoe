@@ -9,7 +9,6 @@ class Colour extends React.Component {
     this.state = {
       randomColour : "",
       error: null,
-      updatePlease: false
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -38,13 +37,13 @@ class Colour extends React.Component {
     xhr.onload = () => {
       if(xhr.status == 200) {
         var data = JSON.parse(xhr.responseText);      
-        this.setState({
-          randomColour: 'testing'
-        })        
+              
       } 
-      console.log(data)
+      console.log(data.new_color);
+      this.setState({
+        randomColour: data.new_color
+      }) 
     } 
-
     xhr.send();
     }
 
