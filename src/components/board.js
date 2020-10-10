@@ -30,7 +30,6 @@ class Board extends React.Component {
     return (
       <div>
         {sq}
-        {console.log(sq)}
       </div>
     );
   }
