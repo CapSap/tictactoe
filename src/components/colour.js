@@ -1,7 +1,6 @@
 import React from 'react';
 // get a new colour for x player
 
-
 class Colour extends React.Component {
   constructor(props) {
     super(props);
@@ -29,9 +28,6 @@ class Colour extends React.Component {
     } 
     xhr.send();
     }
-
-   
-    // maybe onClick should set state value update true; then run api stuff in compDidUpdate?
 
   render() {
     return (
